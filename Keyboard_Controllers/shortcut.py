@@ -25,6 +25,7 @@ def onpress(key):
     # for Hardware keys
     if 'esc' in pressed and k in ['up','down','right','left','space']: 
         HIDPostAuxKey(k)
+        return True
     # for all functions
     for shortcut, fun in shortcuts.items():
         if all(e in pressed for e in shortcut.split(',')):

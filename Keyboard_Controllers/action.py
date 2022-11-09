@@ -64,12 +64,13 @@ def scanner():
         print('Ending point is', x, y)
         img = pg.screenshot()
         img = img.resize((1650,1000), Image.ANTIALIAS)
-        img.save('org.png')
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        img.save(dir_path+'/org.png')
         try:
             img = img.crop((sx, sy, x, y))
         except:
             print('Coordinates error')
-        img.save('crop.png')
+        img.save(dir_path+'/crop.png')
 
         text = pytesseract.image_to_string(img)
         print(text, "\n")
