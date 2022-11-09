@@ -6,11 +6,9 @@ from PIL import Image
 import pyautogui as pg
 import os
 import Quartz
-from threading import Thread
-from time import sleep
+from threading import Timer
 from random import randint
 from datetime import datetime as dt
-
 
 # HARDWARE KEY PRESS
 
@@ -30,27 +28,25 @@ def HIDPostAuxKey(key):
 def notify(title, message):
     os.system('osascript -e \'display notification "{}" with title "{}"\''.format(message, title))
 
-f, thread = False, None
-def do_work(flag):
-    while flag():
+run = False
+flag = True
+def do_work():
+    if run:
         pg.press('cmd')
         pg.moveRel(randint(-200, 200), randint(-200, 200))
         print(dt.now().strftime("%d-%m-%y %I:%M:%S %p"))
-        sleep(50)
+        Timer(3.0, do_work).start()
 
 def alive():
-    global f, thread
-    f = not f
-    if f:
+    global flag, run
+    if flag:
+        run = True
         notify('Status', 'starting alive script')
-        print('starting alive script')
-        thread = Thread(target=do_work, args=(lambda: f,))
-        thread.start()
-    elif thread:
+        do_work()
+    else:
+        run = False
         notify('Status', 'stopping alive script')
-        print('stopping alive script')
-        thread.join()
-
+    flag = not flag
 
 # OCR
 
