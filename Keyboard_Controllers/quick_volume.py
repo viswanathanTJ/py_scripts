@@ -24,5 +24,8 @@ def onpress(key):
 
 print('Script started')
 
-with keyboard.Listener(on_press=onpress) as l:
-    l.join()
+try:
+    with keyboard.Listener(on_press=onpress) as l:
+        l.join()
+except KeyboardInterrupt:
+    print('Byee')

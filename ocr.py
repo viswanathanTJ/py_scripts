@@ -59,5 +59,8 @@ def onrelease(key):
     if k in shortcut or k in quitcut:
         pressed.remove(k)
 
-with keyboard.Listener(on_press=onpress, on_release=onrelease) as listener:
-    listener.join()
+try:
+    with keyboard.Listener(on_press=onpress, on_release=onrelease) as listener:
+        listener.join()
+except KeyboardInterrupt:
+    print('Byee')

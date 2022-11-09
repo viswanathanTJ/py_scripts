@@ -35,7 +35,10 @@ def onrelease(key):
     k = get_key(key)
     if k in pressed: pressed.remove(k)
 
-with Listener(on_press=onpress, on_release=onrelease) as listener:
-    print('*** Shortcuts scrips activated ***')
-    notify('Automator', '*** Shortcuts scrips activated ***')
-    listener.join()
+try:
+    with Listener(on_press=onpress, on_release=onrelease) as listener:
+        print('*** Shortcuts scrips activated ***')
+        notify('Automator', '*** Shortcuts scrips activated ***')
+        listener.join()
+except KeyboardInterrupt:
+    print('*** Shortcuts scrips deactivated ***')
