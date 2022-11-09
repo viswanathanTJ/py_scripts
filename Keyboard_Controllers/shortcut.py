@@ -1,10 +1,10 @@
 from pynput.keyboard import Listener
 from action import *
 
-        
+
 shortcuts = {
-        'ctrl,cmd' : scanner,
-        'esc,alt' : alive
+    'ctrl,cmd': scanner,
+    'esc,alt': alive
     }
 
 hotkeys = {'esc'}
@@ -21,9 +21,9 @@ def onpress(key):
     if 'esc' in pressed and k == 'tab': 
         notify('Automator', '*** Stopping shortcuts script ***')
         return False
-    if k in hotkeys: pressed.add(k)   
+    if k in hotkeys: pressed.add(k)
     # for Hardware keys
-    if 'esc' in pressed and k in ['up','down','right','left','space']: 
+    if 'esc' in pressed and k in cmds.keys(): 
         HIDPostAuxKey(k)
         return True
     # for all functions

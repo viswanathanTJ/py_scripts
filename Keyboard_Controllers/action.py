@@ -12,8 +12,8 @@ from datetime import datetime as dt
 
 # HARDWARE KEY PRESS
 
+cmds = {'space': 16, 'right': 17, 'left': 18, 'up': 0, 'down': 1, '.': 2, ',': 3}
 def HIDPostAuxKey(key): 
-    cmds = {'space': 16, 'right': 17, 'left': 18, 'up': 0, 'down': 1}
     key = cmds[key]
     def doKey(down):
         ev = Quartz.NSEvent.otherEventWithType_location_modifierFlags_timestamp_windowNumber_context_subtype_data1_data2_(14, (0,0), 0xa00 if down else 0xb00, 0, 0, 0, 8, (key << 16) | ((0xa if down else 0xb) << 8), -1)
