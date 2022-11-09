@@ -23,7 +23,7 @@ def onpress(key):
         return False
     if k in hotkeys: pressed.add(k)   
     # for Hardware keys
-    if 'esc' in pressed and k in ['up','down','right','left']: 
+    if 'esc' in pressed and k in ['up','down','right','left','space']: 
         HIDPostAuxKey(k)
     # for all functions
     for shortcut, fun in shortcuts.items():
