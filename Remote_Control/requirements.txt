@@ -1,0 +1,4 @@
+fastapi
+pyautogui
+Quartz
+osascript
