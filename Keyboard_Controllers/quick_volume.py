@@ -9,7 +9,6 @@ def volume(isup):
     print(outputVol)
     osascript.osascript("set volume output volume {}".format(outputVol + 10 if isup else outputVol - 10))
 
-
 def onpress(key):
     if key == keyboard.Key.esc:
         return False

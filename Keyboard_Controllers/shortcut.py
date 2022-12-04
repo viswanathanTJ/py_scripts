@@ -4,10 +4,10 @@ from action import *
 
 shortcuts = {
     'ctrl,cmd': scanner,
-    'esc,alt': alive
+    '/,alt': alive
     }
 
-hotkeys = {'esc'}
+hotkeys = {'/'}
 [hotkeys.add(e) for s in shortcuts.keys() for e in s.split(',') ]
 pressed = set()
 
@@ -18,12 +18,12 @@ def get_key(key):
 def onpress(key):
     global state
     k = get_key(key)
-    if 'esc' in pressed and k == 'tab': 
+    if '/' in pressed and k == 'tab': 
         notify('Automator', '*** Stopping shortcuts script ***')
         return False
     if k in hotkeys: pressed.add(k)
     # for Hardware keys
-    if 'esc' in pressed and k in cmds.keys(): 
+    if '/' in pressed and k in cmds.keys(): 
         HIDPostAuxKey(k)
         return True
     # for all functions
